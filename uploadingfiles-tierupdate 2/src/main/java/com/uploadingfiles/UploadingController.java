@@ -41,6 +41,21 @@ public class UploadingController {
         return "redirect:/";
     }
     
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @ResponseBody
+    public void getfileuplaod(@RequestParam("file") MultipartFile file,@RequestParam("myjson") String payload) {
+    	
+    	System.out.println(file.getOriginalFilename());
+    	File origanlFile = new File("path" + file.getOriginalFilename());
+    	try {
+			file.transferTo(origanlFile);
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	System.out.println(payload);
+    }
+    
 
    
 
